@@ -1,0 +1,23 @@
+{
+  "name": "jquery-phrase-translator",
+  "version": "0.0.0",
+  "homepage": "https://github.com/NielsHolt/jquery-phrase-translator",
+  "authors": [
+    "Niels Holt <niels@steenbuchholt.dk>"
+  ],
+  "description": "Multi-language translation of phrases",
+  "main": [
+    "dist/jquery-phrase-translator.min.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "moduleType": [
+    "es6"
+  ]
+}

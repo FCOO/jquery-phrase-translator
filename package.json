@@ -1,0 +1,42 @@
+{
+  "name": "jquery-phrase-translator",
+  "version": "0.0.1",
+  "description": "Multi-language translation of phrases",
+  "main": "dist/jquery-phrase-translator.min.js",
+	"author": "Niels Holt <niels@steenbuchholt.dk>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^1.9",
+    "leaflet": "^0.7.3"
+  },
+  "devDependencies": {
+    "jshint": "latest",
+    "uglifyjs": "latest"
+  },
+  "jshintConfig": {
+    "globals": {
+      "L": false,
+      "$": false,
+			"jQuery": false,
+      "console": false,
+      "DEBUG": false,
+			"document": false,
+			"alert"		: false
+    },
+    "undef": true,
+    "unused": true
+  },
+  "scripts": {
+    "lint": "jshint src/jquery-phrase-translator.js",
+		"build": "uglifyjs src/jquery-phrase-translator.js -c -m -o dist/jquery-phrase-translator.min.js",
+    "prebuild": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NielsHolt/jquery-phrase-translator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NielsHolt/jquery-phrase-translator/issues"
+  },
+  "homepage": "https://github.com/NielsHolt/jquery-phrase-translator"
+}

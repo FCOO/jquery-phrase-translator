@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<phrases>
+
+	<phrase id="Header">
+		<en>Header</en>
+		<da>Overskrift</da>
+		<de>Ûberschrift</de>
+	</phrase>
+
+	<phrase id="Test">
+		<en>Test</en>
+		<da>Test</da>
+		<de>Test</de>
+	</phrase>
+
+	<phrase id="IAmAParagraph">
+		<en>I am a paragraph</en>
+		<da>Jeg er en pargraf</da>
+		<de>Ich bin ein Paragraph</de>
+	</phrase>
+
+	<phrase id="ClickToAddTextToBox">
+		<en>Click to add text to box</en>
+		<da>Klik for at tilføje tekst til boksen</da>
+		<de>I dont know</de>
+	</phrase>
+
+	<phrase id="ClickToChangeLanguageToEnglish">
+		<en>Click to change language to English</en>
+		<da>Klik for at ændre sprog til engelsk</da>
+		<de>I dont know</de>
+	</phrase>
+
+	<phrase id="ClickToChangeLanguageToDanish">
+		<en>Click to change language to Danish</en>
+		<da>Klik for at ændre sprog til dansk</da>
+		<de>I dont know</de>
+	</phrase>
+
+	<phrase id="ClickToChangeLanguageToGerman">
+		<en>Click to change language to german</en>
+		<da>Klik for at ændre sprog til tysk</da>
+		<de>I dont know</de>
+	</phrase>
+
+
+	<phrase id="TheEnd">
+		<en>The End</en>
+		<da>Slut</da>
+		<de>Endung</de>
+	</phrase>
+
+</phrases>
