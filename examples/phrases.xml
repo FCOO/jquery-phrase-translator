@@ -5,7 +5,7 @@
 	<phrase id="Header">
 		<en>Header</en>
 		<da>Overskrift</da>
-		<de>Ûberschrift</de>
+		<de>Titel</de>
 	</phrase>
 
 	<phrase id="Test">
@@ -17,31 +17,37 @@
 	<phrase id="IAmAParagraph">
 		<en>I am a paragraph</en>
 		<da>Jeg er en pargraf</da>
-		<de>Ich bin ein Paragraph</de>
+		<de>Ich bin ein Absatz</de>
+	</phrase>
+
+	<phrase id="ThisIsATitle">
+		<en>This is a title</en>
+		<da>Dette er en title</da>
+		<de>Das ist ein Titel</de>
 	</phrase>
 
 	<phrase id="ClickToAddTextToBox">
 		<en>Click to add text to box</en>
 		<da>Klik for at tilføje tekst til boksen</da>
-		<de>I dont know</de>
+		<de>Klicken Sie auf das Text-Box hinzufügen</de>
 	</phrase>
 
 	<phrase id="ClickToChangeLanguageToEnglish">
-		<en>Click to change language to English</en>
-		<da>Klik for at ændre sprog til engelsk</da>
-		<de>I dont know</de>
+		<en>ENGLISH * Engelsk * Englisch</en>
+		<da>English * ENGELSK * Englisch</da>
+		<de>English * Engelsk * ENGLISCH</de>
 	</phrase>
 
 	<phrase id="ClickToChangeLanguageToDanish">
-		<en>Click to change language to Danish</en>
-		<da>Klik for at ændre sprog til dansk</da>
-		<de>I dont know</de>
+		<en>DANISH * Dansk * Dänisch</en>
+		<da>Danish * DANSK * Dänisch</da>
+		<de>Danish * Dansk * DÄNISCH</de>
 	</phrase>
 
 	<phrase id="ClickToChangeLanguageToGerman">
-		<en>Click to change language to german</en>
-		<da>Klik for at ændre sprog til tysk</da>
-		<de>I dont know</de>
+		<en>GERMAN * Tysk * Deutsch</en>
+		<da>German * TYSK * Deutsch</da>
+		<de>German * Tysk * DEUTSCH</de>
 	</phrase>
 
 

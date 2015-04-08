@@ -15,7 +15,9 @@
 			var phraseTranslator = new PhraseTranslator( {languageId:'da', fileName:'phrases.xml'});
 
 			function addPhraseToBox(phraseId){
-				var e = $('<p lang="cl">#' + phraseId + '</p>').appendTo( $('#theBox') ).prop('title', '#ClickToChangeLanguageToEnglish').prop({title: '#ClickToChangeLanguageToEnglish'});
+				$('<p lang="cl">#' + phraseId + '</p>')
+					.appendTo( $('#theBox') )
+					.prop('title', '#ThisIsATitle');
 			}
 		</script>
 
