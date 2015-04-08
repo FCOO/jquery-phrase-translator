@@ -15,20 +15,20 @@ The elements to be translated must have attribute `lang` or (optional) a specifi
 ### bower
 `bower install https://github.com/NielsHolt/jquery-phrase-translator.git --save`
 
-##Operating instructions
+## Operating instructions
 	var myPhraseTranslator = new PhraseTranslator( options );
 
 Change the language using `select( languageId, altLanguageId )`
 	
 	myPhaseTranslator.select( 'da', 'en' );
 
-##Configuration instructions
+## Configuration instructions
 
-###Options
+### Options
 `options` has the following attributes
 
 Option  | Type | Default | Description
-------------- | -------------
+:------------- | :-------------: | :------------------ | :----------------------------
 `languageId` | `string` | `'en'` | Id of primary language 
 `altLanguageId` | `string` | `'en'` | Id of alternative language. Used if no translation is available in primary language  
 `classNames` | `string` | `null` | Class name(s) separated by space of class-names that elements will be translated 
@@ -40,7 +40,7 @@ Option  | Type | Default | Description
 `attrList` | `Array` | `['title', 'alt', 'placeholder']` | List of attributes that will be translated. NOTE: If you changes any of the attributes directly using `$.fn.attr` the option `monitorAttr` must be true 
 
 
-###Elements
+### Elements
 
 All elements containing a phrase that need to be translated must have property `lang="xy"` (xy = any language code) or a specified class-name and contains the id for the phrases prefixed with `'#'`
 
@@ -48,7 +48,7 @@ All elements containing a phrase that need to be translated must have property `
 	<input type="text" lang="en" title="#EnterYourName"/>
 	<img lang="en" alt="#ClickToSave" src="..."/>
 
-###xml-file
+### xml-file
 The xml-file must contain the phrase translation a la
 
 	...
@@ -70,25 +70,25 @@ The xml-file must contain the phrase translation a la
 
 
 
-##Copyright and License
+## Copyright and License
 This plugin is licensed under the [MIT license](https://github.com/NielsHolt/jquery-phrase-translator/LICENSE).
 
 Copyright (c) 2015 [Niels Holt](https://github.com/NielsHolt)
 
-##Contact information
+## Contact information
 
 Niels Holt <niels@steenbuchholt.dk>
 
 
-##Credits and acknowledgements
+## Credits and acknowledgements
 
 Based on the great work by [Irrelon/jquery-lang-js](https://github.com/irrelon/jquery-lang-js)
 
-##Known bugs
+## Known bugs
 
-##Troubleshooting
+## Troubleshooting
 
-##Changelog
+## Changelog
 
 
 
