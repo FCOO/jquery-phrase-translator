@@ -28,13 +28,13 @@ Change the language using `select( languageId, altLanguageId )`
 `options` has the following attributes
 
 Option  | Type | Default | Description
-------------- | -------------
+:------------- | :-------------: | :------------------ | :----------------------------
 `languageId` | `string` | `'en'` | Id of primary language 
 `altLanguageId` | `string` | `'en'` | Id of alternative language. Used if no translation is available in primary language  
 `classNames` | `string` | `null` | Class name(s) separated by space of class-names that elements will be translated 
 `onlyLang` | `string` | `null` | By default all elements with attribute `lang` will be translated, but if `onlyLang` is specified, only elements with `lang == onlyLang` will be translated
 `fileName`  | `string` | `'phrases.xml'` | The name of the xml file with the phrases 
-`callback`	| `function( phraseTrans )` | `null` | A function to be called after the translation is completed
+`callback`	| `function` | `null` | A function to be called after the translation is completed
 `monitorAttr` | `boolean` | `false` | If true elements modified with `$.fn.attr` will also be translated  
 `debug` | `boolean` | `false` | If true debug informations will be displayed in the browsers console 
 `attrList` | `Array` | `['title', 'alt', 'placeholder']` | List of attributes that will be translated. NOTE: If you changes any of the attributes directly using `$.fn.attr` the option `monitorAttr` must be true 
