@@ -17,15 +17,16 @@
 		var self = this;
 		this.phrases = this.phrases || {};
 		this.options = $.extend( { 
-			languageId		:'en', 
-			altLanguageId	:'en', 
-			classNames		: '',		//string classes separeted by space
-			onlyLang			: '',
-			fileName			:'phrases.xml', 
-			callback			:null,
-			monitorAttr		:false,
-			debug					:true,
-			attrList			:['title', 'alt', 'placeholder']
+			languageId					:'en', 
+			altLanguageId				:'en', 
+			classNames					: '',		//string classes separeted by space
+			onlyLang						: '',
+			fileName						:'phrases.xml', 
+			callback						:null,
+			monitorAttr					:false,
+			debug								:false,
+			selectInConstructor	:true,
+			attrList						:['title', 'alt', 'placeholder']
 
 		}, options ) ;
 
@@ -251,8 +252,10 @@
 		//**************************************************************
 		//Load the data when $(document).ready
 		$(function () {
-			//Load phrases from xml-file
-			self.select( self.options.languageId, self.options.altLanguageId );		
+			if (self.options.selectInConstructor){ 
+				//Load phrases from xml-file
+				self.select( self.options.languageId, self.options.altLanguageId );		
+			}
 		});
 	}
   

@@ -37,6 +37,7 @@ Option  | Type | Default | Description
 `callback`	| `function` | `null` | A function to be called after the translation is completed
 `monitorAttr` | `boolean` | `false` | If true elements modified with `$.fn.attr` will also be translated  
 `debug` | `boolean` | `false` | If true debug informations will be displayed in the browsers console 
+`selectInConstructor` | `boolean` | `true` | If true the `select` method will be called when the constructor is finish. Set to false if you want to load and translate the phrases manually 
 `attrList` | `Array` | `['title', 'alt', 'placeholder']` | List of attributes that will be translated. NOTE: If you changes any of the attributes directly using `$.fn.attr` the option `monitorAttr` must be true 
 
 
