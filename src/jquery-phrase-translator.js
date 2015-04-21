@@ -40,7 +40,7 @@
 		for (i=0; i<classList.length; i++ ){
 			nextClass = $.trim( classList[i] );
 			if (nextClass){
-				this.classRegExp += (this.classRegExp?'|':'') + '\s' + nextClass + '\s';			  
+				this.classRegExp += (this.classRegExp?'|':'') + '\\s' + nextClass + '\\s';			  
 				this.childrenSelector += ',.'+nextClass;
 				this.globalSelector		+= ',.'+nextClass;
 			}

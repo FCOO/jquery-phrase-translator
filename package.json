@@ -1,6 +1,6 @@
 {
   "name": "jquery-phrase-translator",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Multi-language translation of phrases",
   "main": "dist/jquery-phrase-translator.min.js",
 	"author": "Niels Holt <niels@steenbuchholt.dk>",
