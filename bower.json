@@ -1,14 +1,23 @@
 {
   "name": "jquery-phrase-translator",
-  "version": "1.0.5",
-  "homepage": "https://github.com/NielsHolt/jquery-phrase-translator",
+  "version": "1.1.0",
+  "homepage": "https://github.com/FCOO/jquery-phrase-translator",
   "authors": [
-    "Niels Holt <niels@steenbuchholt.dk>"
+    "Niels Holt nho@fcoo.dk"
   ],
-  "description": "Multi-language translation of phrases",
+  "description": "",
   "main": [
-    "dist/jquery-phrase-translator.min.js"
+    "dist/jquery-phrase-translator.min.js",
+    "dist/jquery-phrase-translator.min.css"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FCOO/jquery-phrase-translator.git"
+  },
+  "dependencies": {
+    "jquery": "latest"
+  },
+  "devDependencies": {},
   "license": "MIT",
   "ignore": [
     "**/.*",

@@ -1,42 +1,37 @@
 {
   "name": "jquery-phrase-translator",
-  "version": "1.0.5",
-  "description": "Multi-language translation of phrases",
-  "main": "dist/jquery-phrase-translator.min.js",
-	"author": "Niels Holt <niels@steenbuchholt.dk>",
+  "version": "1.1.0",
+  "description": "package.json is only use for building the package. see bower.json for more info",
+  "author": "Niels Holt nho@fcoo.dk",
   "license": "MIT",
-  "dependencies": {
-    "jquery": "^1.9",
-    "leaflet": "^0.7.3"
-  },
   "devDependencies": {
-    "jshint": "latest",
-    "uglifyjs": "latest"
+    "grunt-bower-concat": "latest",
+    "grunt-continue": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-rename": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-exec": "latest",
+    "grunt-jsonmin": "latest",
+    "grunt-prompt": "latest",
+    "grunt-sass": "latest",
+    "grunt-text-replace": "latest",
+    "load-grunt-tasks": "latest",
+    "main-bower-files": "latest",
+    "semver": "latest",
+    "shelljs": "^0.5.3",
+    "strip-json-comments": "latest",
+    "wordwrap": "^1.0.0"
   },
   "jshintConfig": {
-    "globals": {
-      "L": false,
-      "$": false,
-			"jQuery": false,
-      "console": false,
-      "DEBUG": false,
-			"document": false,
-			"alert"		: false
-    },
-    "undef": true,
-    "unused": true
-  },
-  "scripts": {
-    "lint": "jshint src/jquery-phrase-translator.js",
-		"build": "uglifyjs src/jquery-phrase-translator.js -c -m -o dist/jquery-phrase-translator.min.js",
-    "prebuild": "npm run lint"
+    "jshintrc": true
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NielsHolt/jquery-phrase-translator.git"
+    "url": "https://github.com/FCOO/jquery-time-slider.git"
   },
-  "bugs": {
-    "url": "https://github.com/NielsHolt/jquery-phrase-translator/issues"
-  },
-  "homepage": "https://github.com/NielsHolt/jquery-phrase-translator"
+  "homepage": "https://github.com/FCOO/jquery-time-slider"
 }

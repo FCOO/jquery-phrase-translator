@@ -1,48 +1,34 @@
 /****************************************************************************
-	jquery-phrase-translator.js, 
+	jquery-phrase-translator, Multi-language translation of phrases
 
-	(c) 2015, FCOO
+	(c) 2015, Niels Holt
 
-	https://github.com/FCOO/jquery-phrase-translator
-	https://github.com/FCOO
+	https://github.com/NielsHolt/jquery-phrase-translator
+	https://github.com/NielsHolt
+
+	Based on https://github.com/coolbloke1324/jquery-lang-js
 
 ****************************************************************************/
 
-;(function ($, window, document, undefined) {
+(function ($, window, document, undefined) {
 	"use strict";
-	
+
 	function PhraseTranslator( options ) {
-		this.VERSION = "{VERSION}";
-		this.options = $.extend({
-			//Default options
-			languageId					: 'en', 
-			altLanguageId				: 'en', 
+		var self = this;
+		this.phrases = this.phrases || {};
+		this.options = $.extend( { 
+			languageId					:'en', 
+			altLanguageId				:'en', 
 			classNames					: '',		//string classes separeted by space
 			onlyLang						: '',
-			fileName						: '', 
-			callback						: null,
-			monitorAttr					: false,
-			debug								: false,
-			selectInConstructor	: true,
-			attrList						: ['title', 'alt', 'placeholder']
+			fileName						:'phrases.xml', 
+			callback						:null,
+			monitorAttr					:false,
+			debug								:false,
+			selectInConstructor	:true,
+			attrList						:['title', 'alt', 'placeholder']
 
-		}, options || {} );
-
-		var self = this;
-
-		this.phrases = this.phrases || {}; //json-object with current translation. Is set in this.update();
-		this.jsonPhrasesList = []; //List of json-objects with phrases. See readme.md for description. Ex: { "header": {"en":"Header", "da":"Overskrift"}, ... }
-
-		//If a json-file is given => read it and save it in this.jsonPhrasesList
-		if (this.options.fileName){
-			$.ajax({
-				url			: this.options.fileName,
-			  async		: false,
-				dataType: 'json',
-				error		: function( err  ) { console.log('phrase-translator: Error loading "' + self.options.fileName + '".', 'Error-text='+err.statusText +'. Error-obj:', err); },
-				success	: function( data ) { self.addPhrases( data ); }
-			});
-		}
+		}, options ) ;
 
 		//Create childrenSelector, globalSelector, and classRegExp (regexp) to check if elements has one of the classes in options.classNames
 		this.childrenSelector = '[lang' + (this.options.onlyLang ? '="'+this.options.onlyLang+'"' : '') + ']';
@@ -75,6 +61,12 @@
 			prop		: $.fn.prop
 		};
 
+		//'Save' original version of text, attr, and prop. 
+		this.fnGetText = function fnGetText($element						) { return this._jQueryMutationCopies.text.call( $element); };
+		this.fnSetText = function fnSetText($element, arg1			) { return this._jQueryMutationCopies.text.call( $element, arg1); };
+		this.fnGetAttr = function fnGetAttr($element, arg1			) { return this._jQueryMutationCopies.attr.call( $element, arg1); };
+		this.fnSetAttr = function fnSetAttr($element, arg1, arg2) { return this._jQueryMutationCopies.attr.call( $element, arg1, arg2); };
+
 		// Now override the existing mutation methods with our own
 		$.fn.append		= function () { return self._jQueryMutation(this, 'append'	, arguments); };
 		$.fn.appendTo = function () { return self._jQueryMutation(this, 'appendTo', arguments); };
@@ -89,34 +81,10 @@
 		if (this.options.monitorAttr){
 			$.fn.attr			= function () { return self._jQueryMutation(this, 'attr'		, arguments); };
 		}
-	
-	
-		//Load the data when $(document).ready
-		if (this.options.selectInConstructor){
-			$(function () {
-				self.select( self.options.languageId, self.options.altLanguageId );		
-			});
-		  
-		}
 
-
-	}
-  
-  // expose access to the constructor
-  window.PhraseTranslator = PhraseTranslator;
-
-
-	//Extend the prototype
-	window.PhraseTranslator.prototype = {
-
-		//'Save' original version of text, attr, and prop. 
-		fnGetText: function($element						) { return this._jQueryMutationCopies.text.call( $element); },
-		fnSetText: function($element, arg1			) { return this._jQueryMutationCopies.text.call( $element, arg1); },
-		fnGetAttr: function($element, arg1			) { return this._jQueryMutationCopies.attr.call( $element, arg1); },
-		fnSetAttr: function($element, arg1, arg2) { return this._jQueryMutationCopies.attr.call( $element, arg1, arg2); },
-
+		//**************************************************************
 		//_jQueryMutation overwrites
-		_jQueryMutation: function(context, method, args) { 
+		this._jQueryMutation = function _jQueryMutation(context, method, args) { 
 			var result = this._jQueryMutationCopies[method].apply(context, args),
 					$context = $(context),
 					$contextLang = this.fnGetAttr($context, 'lang'),
@@ -143,22 +111,27 @@
 			}	
 			this._translateAll( $context );
 			return result;			
-		},
+		};
 		
-		//**************************************************************
-		_isValidPhraseId: function( phraseId ){
-			return phraseId ? phraseId.charAt(0) == '#' : false;
-		},
 
 		//**************************************************************
-		_translateAll: function( $selector ){
-			var self = this;
+		this._isValidPhraseId = function _isValidPhraseId( phraseId ){
+			return phraseId ? phraseId.charAt(0) == '#' : false;
+		};
+
+		//**************************************************************
+		this.translatePhrase = function translatePhrase( phraseId, defaultValue ){
+			return this._isValidPhraseId(phraseId) ? this.phrases[ phraseId.slice(1) ] : (defaultValue || phraseId);
+		};
+
+		//**************************************************************
+		this._translateAll = function _translateAll( $selector ){
 			$selector = $selector ? $selector.find(this.childrenSelector) : $( this.globalSelector );
 			$selector.each( function(){ self._translateElement( $(this) ); });
-		},
+		};
 
 		//**************************************************************
-		_translateElement: function( $element ){
+		this._translateElement = function _translateElement( $element ){
 			var contents = '',
 					phraseData = $element.data('phrase-translator-contents') || '',
 					contentsLang = $element.data('phrase-translator-contents-lang') || '',
@@ -192,7 +165,7 @@
 
 			//If phraseData contains a valid phrse-code => translate it into text
 			if (phraseData && translate) {
-				contents = this._translate( phraseData );
+				contents = this.translatePhrase( phraseData );
 			  if (elementIsInput) {
 					$element.val( contents );
 				} else {
@@ -203,14 +176,14 @@
 			//Translate the attributes of the element
 			this._translateAttr( $element );
 
-			//Set the phrase-translator-contents with the phrase-codes for the different attributes
+			//Set the phrase-translator-contents with the phraseCodes for the different attributes
 			$element.data('phrase-translator-contents', phraseData);
 			$element.data('phrase-translator-contents-lang', this.options.languageId);
-		},
+		};
 		
 		
 		//**************************************************************
-		_translateAttr: function( $element ){
+		this._translateAttr = function _translateAttr( $element ){
 			var attr, attrValue,
 					phraseData = $element.data('phrase-translator-attr') || {},
 					attrLang = $element.data('phrase-translator-attr-lang') || '',
@@ -228,112 +201,65 @@
 					translate = true; 
 				}
 
-				//If phraseData[attr] contains a valid phrase-codes => translate it into text
+				//If phraseData[attr] contains a valid phrse-code => translate it into text
 				if (phraseData.hasOwnProperty(attr) && translate) {
-					this.fnSetAttr( $element, attr, this._translate( phraseData[attr] ));
+					this.fnSetAttr( $element, attr, this.translatePhrase( phraseData[attr] ));
 				}	
 			}
 					
 			//Set the data-phrase-translator with the phraseCodes for the different attributes
 			$element.data('phrase-translator-attr', phraseData);
 			$element.data('phrase-translator-attr-lang', this.options.languageId);
-		},
+		};
 		
-
 		//**************************************************************
-		_translate: function( phraseHashId, defaultValue ){
-			return this._isValidPhraseId(phraseHashId) ? this.phrases[ phraseHashId.slice(1) ] : (defaultValue || phraseHashId);
-		},
-
-
-		
-		
-		/**************************************************************
-		Public methods
-		**************************************************************/
-	
-		/* 
-		translate(phraseId, maskValueList, defaultValue)
-		Simple function to return the text cooresponding with phraseId (without leading '#')
-		maskValueList = array of {mask, value} where mask is replaced by value in the result
-		Eq.:
-			if _translate('#HelloNAME') returns 'Hello [NAME]!' then
-			translate('HelloNAME', [{mask:'[NAME]', value:'Niels'}]) will return 'Hello Niels!'
-		*/
-		translate: function(phraseId, maskValueList, defaultValue){
-			var result = this._translate( '#'+phraseId, defaultValue );
-			if (maskValueList && result){
-				for (var i=0; i<maskValueList.length; i++ )
-				result = result.replace(maskValueList[i].mask, maskValueList[i].value);  
-			}
-			return result || '#'+phraseId;
-		},
-
-		//**************************************************************
-		addPhrases: function( jsonPhrases , update ){
-			this.jsonPhrasesList.push(jsonPhrases); 
-			if (update)
-				this.update();
-		},
-
-		//**************************************************************
-		select: function( languageId, altLanguageId ){
+		this.select = function select( languageId, altLanguageId ){
 			this.options.languageId = languageId;		
 			this.options.altLanguageId = altLanguageId || this.options.altLanguageId || 'en';		
-			this.update();
-		},
+			var self = this;
+			altLanguageId = this.options.altLanguageId;
+			$.ajax({
+				url					: this.options.fileName,
+				async : false,
+				contentType	: "application/x-www-form-urlencoded;charset=iso-8859-1",
+
+				success			: function(xml) { 
+												//Find all <phrase> and add them to languagePack and _languageTexts
+												$(xml).find('phrase').each(function(){
+													var $this		 = $(this),
+															phraseId = self.fnGetAttr($this, 'id'), 
+															transTxt = $this.find(languageId).text();
+													if (!transTxt && altLanguageId){
+														transTxt = $this.find(altLanguageId).text();  
+														if (self.options.debug)
+														  console.log('"' + phraseId +'" not found in language "' + languageId + '". Used "'+transTxt+'" from "'+altLanguageId+'" instead');
+													}
+													self.phrases[phraseId] = transTxt;
+												});
+												self.options.languageId = languageId;		
+												self.options.altLanguageId = altLanguageId || this.options.altLanguageId || 'en';		
+												self._translateAll();
+
+												if (self.options.callback)
+												  self.options.callback( self );
+											},
+					error			: function (err) {
+												console.log('Error loading ' + self.options.fileName + '. Error='+err.statusText);
+											}
+			});
+		};
 
 		//**************************************************************
-		update: function(){
-			var i, jsonPhrases, jsonPhrase, phraseId, transTxt;
-
-			this.phrases = {};
-
-			for (i=0; i<this.jsonPhrasesList.length; i++ ){
-				jsonPhrases = this.jsonPhrasesList[i];
-
-				for (phraseId in jsonPhrases) {
-					if (jsonPhrases.hasOwnProperty(phraseId)) {
-						
-						jsonPhrase = jsonPhrases[ phraseId ];
-						//Translate
-						transTxt = jsonPhrase[ this.options.languageId ];
-
-						//If no translation is given => use altLanguageId
-						if (!transTxt && this.options.altLanguageId){
-							transTxt = jsonPhrase[ this.options.altLanguageId ];
-							if (this.options.debug)
-								console.log('phrase-translator: "' + phraseId +'" not defined for language "' + this.options.languageId + '". Using "'+transTxt+'" from "'+this.options.altLanguageId+'" instead');
-						}
-
-						//If the translation already exists: Use last version (non-empty)
-						if (this.phrases[ phraseId ]){
-							transTxt = transTxt || this.phrases[ phraseId ];
-							if ( this.options.debug )
-								console.log('phrase-translator: Two or more translations for  "' + phraseId + '". Using "' + transTxt +'"');  
-						}						
-
-						//Add translation
-						this.phrases[ phraseId ] = transTxt;
-					}
-				}
+		//Load the data when $(document).ready
+		$(function () {
+			if (self.options.selectInConstructor){ 
+				//Load phrases from xml-file
+				self.select( self.options.languageId, self.options.altLanguageId );		
 			}
-			
-			//Translate all elements			
-			this._translateAll();
-			
-			if (this.options.callback)
-				this.options.callback( this );
-		}
-	};
-
-	/******************************************
-	Initialize/ready 
-	*******************************************/
-	$(function() { //"$( function() { ... });" is short for "$(document).ready( function(){...});"
-
-	
-	}); //End of initialize/ready
-	//******************************************
+		});
+	}
+  
+  // expose access to the constructor
+  window.PhraseTranslator = PhraseTranslator;
 
 }(jQuery, this, document));

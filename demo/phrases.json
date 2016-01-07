@@ -1,0 +1,75 @@
+{
+"Header": {
+	"en":	"Header",
+	"da": "Overskrift",
+	"de": "Ûberschrift"
+},
+
+"Test": {
+	"en":	"Test",
+	"da": "Test",
+	"de": "Test"
+},
+
+"IAmAParagraph": {
+	"en":	"I am a paragraph",
+	"da": "Jeg er en pargraf",
+	"de": "Ich bin ein Paragraph"
+},
+
+"ThisIsATitle": {
+	"en": "This is a title",
+	"da": "Dette er en title",
+	"de": "Das ist ein Titel"
+},
+
+"ClickToAddTextToBox": {
+	"en":	"Click to add text to box",
+	"da": "Klik for at tilføje tekst til boksen",
+	"de": ""
+},
+
+
+"ClickToChangeLanguageToGerman": {
+	"en":	"Click to change language to german",
+	"da": "Klik for at ændre sprog til tysk",
+	"de": "I dont know"
+},
+
+
+"ClickToChangeLanguageToEnglish": {
+		"en": "ENGLISH * Engelsk * Englisch",
+		"da": "English * ENGELSK * Englisch",
+		"de": "English * Engelsk * ENGLISCH"
+},
+
+"ClickToChangeLanguageToDanish": {
+		"en": "DANISH * Dansk * Dänisch",
+		"da": "Danish * DANSK * Dänisch",
+		"de": "Danish * Dansk * DÄNISCH"
+},
+
+"ClickToChangeLanguageToGerman": {
+		"en": "GERMAN * Tysk * Deutsch",
+		"da": "German * TYSK * Deutsch",
+		"de": "German * Tysk * DEUTSCH"
+},
+
+"AParagraph": {
+		"en": "A paragraph",
+		"da": "En pargraf",
+		"de": "Ein Absatz"
+},
+
+"TheTime": {
+		"en": "The time",
+		"da": "Klokken",
+		"de": "Die Zeit"
+},
+
+"TheTimeIs": {
+		"en": "The time is [TIME]",
+		"da": "Klokken er [TIME]",
+		"de": "Die Zeit [TIME]"
+}
+}

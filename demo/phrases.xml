@@ -27,7 +27,7 @@
 	</phrase>
 
 	<phrase id="ClickToAddTextToBox">
-		<en>Click to add text to box</en>
+		<en>Click to add text to the box</en>
 		<da>Klik for at tilføje tekst til boksen</da>
 		<de>Klicken Sie auf das Text-Box hinzufügen</de>
 	</phrase>
@@ -51,10 +51,23 @@
 	</phrase>
 
 
-	<phrase id="TheEnd">
-		<en>The End</en>
-		<da>Slut</da>
-		<de>Endung</de>
+	<phrase id="AParagraph">
+		<en>A paragraph</en>
+		<da>En pargraf</da>
+		<de>Ein Absatz</de>
 	</phrase>
+
+	<phrase id="TheTime">
+		<en>The time</en>
+		<da>Klokken</da>
+		<de>Die Zeit</de>
+	</phrase>
+
+	<phrase id="TheTimeIs">
+		<en>The time is [TIME]</en>
+		<da>Klokken er [TIME]</da>
+		<de>Die Zeit [TIME]</de>
+	</phrase>
+
 
 </phrases>
