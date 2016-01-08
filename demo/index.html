@@ -25,8 +25,8 @@
 	<button style="width:200px" lang="cl" onclick="phraseTranslator.select('da')">#ClickToChangeLanguageToDanish</button>
 	<input style="width:200px" type="button" lang="cl" onclick="phraseTranslator.select('de')" value="#ClickToChangeLanguageToGerman"></input>
 	<br>&nbsp;<br>
-	<button lang="cl" onclick="addPhraseToBox('AParagraph')">#ClickToAddTextToBox</button>
-	<button lang="cl" onclick="alert( phraseTranslator.translate('TheTimeIs', [{mask:'[TIME]', value:(new Date()).toLocaleTimeString()}] ))">#TheTime</button>
+	<button lang="cl" onclick="addPhraseToBox('AParagraph')">#AddTextToBox</button>
+	<button class="this-will-also-be-translated" onclick="alert( phraseTranslator.translate('TheTimeIs', [{mask:'[TIME]', value:(new Date()).toLocaleTimeString()}] ))">#TheTime</button>
 	<br>&nbsp;<br>
 	<div id="theBox" style="border:1px solid black">
 		<p lang=""></p>
@@ -40,6 +40,7 @@
 			var phraseTranslator = new PhraseTranslator( {
 				languageId:'da', 
 				fileName:'phrases.json',
+				classNames: 'this-will-also-be-translated', 
 				debug: true
 			});
 

@@ -28,6 +28,7 @@ http://FCOO.github.io/jquery-phrase-translator/demo/
 
 
 ### options
+
 Option  | Type | Default | Description
 :------------- | :-------------: | :------------------ | :----------------------------
 `languageId` | `string` | `'en'` | Id of primary language 
@@ -91,7 +92,26 @@ Where `{ TRANSLATION }` contains
 
 #### `addPhrases( jsonPhrases , update )`
 Add the phrases in `jsonPhrases` 
-If `update` is true `update()` is called
+
+If `update` is true `update()` is called after
+
+#### `addPhraseFile( fileName, update )`
+Load and add the phrases in the json-file `fileName`
+
+If `update` is true `update()` is called after
+
+#### `addClassNames( classNames, update )`
+
+`lassNames` = Class name(s) separated by space that elements will be translated
+
+If `update` is true `update()` is called after
+
+#### `addSelectors( selectors, update )`
+
+`selectors` = `string` og `array of string` with css-selectors for selection of elements that will be translated
+
+If `update` is true `update()` is called after
+
 
 #### `select( languageId, altLanguageId )`
 Change the language and update all elements 

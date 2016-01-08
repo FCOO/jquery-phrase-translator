@@ -6,6 +6,8 @@
 	https://github.com/FCOO/jquery-phrase-translator
 	https://github.com/FCOO
 
+	Based on https://github.com/coolbloke1324/jquery-lang-js
+
 ****************************************************************************/
 
 ;(function ($, window, document, undefined) {
@@ -34,32 +36,16 @@
 		this.jsonPhrasesList = []; //List of json-objects with phrases. See readme.md for description. Ex: { "header": {"en":"Header", "da":"Overskrift"}, ... }
 
 		//If a json-file is given => read it and save it in this.jsonPhrasesList
-		if (this.options.fileName){
-			$.ajax({
-				url			: this.options.fileName,
-			  async		: false,
-				dataType: 'json',
-				error		: function( err  ) { console.log('phrase-translator: Error loading "' + self.options.fileName + '".', 'Error-text='+err.statusText +'. Error-obj:', err); },
-				success	: function( data ) { self.addPhrases( data ); }
-			});
-		}
+		this.addPhraseFile( this.options.fileName );
 
-		//Create childrenSelector, globalSelector, and classRegExp (regexp) to check if elements has one of the classes in options.classNames
+		//Create childrenSelector, globalSelector, and classRegExp (regexp) to check if elements has one of the classes in options.classNames or classes added using addClassNames(..)
 		this.childrenSelector = '[lang' + (this.options.onlyLang ? '="'+this.options.onlyLang+'"' : '') + ']';
 		this.globalSelector		= ':not(html)'+this.childrenSelector;
+		this.classRegExpStr = '';
 		this.classRegExp = '';
 
-
-		var i, nextClass, classList = this.options.classNames.split(' ');
-		for (i=0; i<classList.length; i++ ){
-			nextClass = $.trim( classList[i] );
-			if (nextClass){
-				this.classRegExp += (this.classRegExp?'|':'') + '\\s' + nextClass + '\\s';			  
-				this.childrenSelector += ',.'+nextClass;
-				this.globalSelector		+= ',.'+nextClass;
-			}
-		}
-		this.classRegExp = this.classRegExp ? this.classRegExp = new RegExp(this.classRegExp) : null;
+		//Add the classes given by options.classNames
+		this.addClassNames( this.options.classNames );
 		
 		// Store existing mutation methods so we can auto-run translations when new data is added to the page
 		this._jQueryMutationCopies = {
@@ -154,6 +140,7 @@
 		_translateAll: function( $selector ){
 			var self = this;
 			$selector = $selector ? $selector.find(this.childrenSelector) : $( this.globalSelector );
+
 			$selector.each( function(){ self._translateElement( $(this) ); });
 		},
 
@@ -272,6 +259,52 @@
 		//**************************************************************
 		addPhrases: function( jsonPhrases , update ){
 			this.jsonPhrasesList.push(jsonPhrases); 
+			if (update)
+				this.update();
+		},
+
+		//**************************************************************
+		addPhraseFile: function( fileName, update ){
+			if (fileName){
+				$.ajax({
+					url			: fileName,
+				  async		: false,
+					dataType: 'json',
+					error		: function( err  ) { console.log('phrase-translator: Error loading "' + fileName + '".', 'Error-text='+err.statusText +'. Error-obj:', err); },
+					success	: $.proxy( this.addPhrases, this )
+				});
+			}
+			
+			if (update)
+				this.update();
+		},
+
+		//**************************************************************
+		addClassNames: function( classNames, update ){
+			classNames = classNames || '';
+			var i, nextClass, classList = this.options.classNames.split(' ');
+			for (i=0; i<classList.length; i++ ){
+				nextClass = $.trim( classList[i] );
+				if (nextClass){
+					this.classRegExpStr += (this.classRegExpStr?'|':'') + '\\s' + nextClass + '\\s';			  
+					this.addSelectors('.'+nextClass);
+				}
+			}
+			this.classRegExp = this.classRegExpStr ? new RegExp(this.classRegExpStr) : null;
+
+			if (update)
+				this.update();
+		},
+
+		//**************************************************************
+		addSelectors: function( selectors, update ){
+			var i, selector;
+			selectors = $.isArray( selectors ) ?  selectors : [selectors];
+			for (i=0; i<selectors.length; i++ ){
+				selector = selectors[i];
+				this.childrenSelector += ','+selector;
+				this.globalSelector		+= ','+selector;
+			}
 			if (update)
 				this.update();
 		},

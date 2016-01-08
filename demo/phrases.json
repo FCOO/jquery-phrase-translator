@@ -23,33 +23,44 @@
 	"de": "Das ist ein Titel"
 },
 
-"ClickToAddTextToBox": {
-	"en":	"Click to add text to box",
-	"da": "Klik for at tilføje tekst til boksen",
-	"de": ""
-},
-
-
-"ClickToChangeLanguageToGerman": {
-	"en":	"Click to change language to german",
-	"da": "Klik for at ændre sprog til tysk",
-	"de": "I dont know"
+"AddTextToBox": {
+	"en":	"Add text to box",
+	"da": "Tilføje tekst til boksen",
+	"de": "Text zu Feld hinzuzufügen"
 },
 
 
 "ClickToChangeLanguageToEnglish": {
+		"en": "English",
+		"da": "English (Engelsk)",
+		"de": "English (Englisch)"
+},
+
+"ClickToChangeLanguageToDanish": {
+		"en": "Dansk (Danish)",
+		"da": "Dansk",
+		"de": "Dansk (Danish)"
+},
+
+"ClickToChangeLanguageToGerman": {
+		"en": "Deutsch (German)",
+		"da": "Deutsch (Tysk)",
+		"de": "Deutsch"
+},
+
+"OLD_ClickToChangeLanguageToEnglish": {
 		"en": "ENGLISH * Engelsk * Englisch",
 		"da": "English * ENGELSK * Englisch",
 		"de": "English * Engelsk * ENGLISCH"
 },
 
-"ClickToChangeLanguageToDanish": {
+"OLD_ClickToChangeLanguageToDanish": {
 		"en": "DANISH * Dansk * Dänisch",
 		"da": "Danish * DANSK * Dänisch",
 		"de": "Danish * Dansk * DÄNISCH"
 },
 
-"ClickToChangeLanguageToGerman": {
+"OLD_ClickToChangeLanguageToGerman": {
 		"en": "GERMAN * Tysk * Deutsch",
 		"da": "German * TYSK * Deutsch",
 		"de": "German * Tysk * DEUTSCH"
