@@ -14,7 +14,7 @@
 	"use strict";
 	
 	function PhraseTranslator( options ) {
-		this.VERSION = "1.2.0";
+		this.VERSION = "1.2.1";
 		this.options = $.extend({
 			//Default options
 			languageId					: 'en', 
