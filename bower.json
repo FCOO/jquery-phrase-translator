@@ -1,14 +1,13 @@
 {
   "name": "jquery-phrase-translator",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "homepage": "https://github.com/FCOO/jquery-phrase-translator",
   "authors": [
     "Niels Holt nho@fcoo.dk"
   ],
   "description": "",
   "main": [
-    "dist/jquery-phrase-translator.min.js",
-    "dist/jquery-phrase-translator.min.css"
+    "dist/jquery-phrase-translator.min.js"
   ],
   "repository": {
     "type": "git",
