@@ -79,7 +79,7 @@ Where `{ TRANSLATION }` contains
 		},
 		"EnterYourName": {
 			en: "Enter your name",
-			da: "Indtast dit name"
+			da: "Indtast dit navn"
 		},
 		"ClickToSave": {
 			en: "Click to save",
