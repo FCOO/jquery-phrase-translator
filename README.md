@@ -1,4 +1,4 @@
-# NOT USED: jquery-phrase-translator
+# jquery-phrase-translator
 >
 
 
